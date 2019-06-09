@@ -15,7 +15,7 @@ class Customers
         foreach ($query as $row) {
             // Each row is now an instance of our Customer class.
             $data[$row->id] = [
-                'firstname' => $row->firstname,
+                'fullname' => $row->fullname,
                 'surname' => $row->surname,
                 'email' => $row->email,
                 'gender' => $row->gender,
