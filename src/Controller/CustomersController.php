@@ -4,29 +4,23 @@ declare(strict_types = 1);
 namespace App\Controller;
 
 use App\Service\Customers as CustomersService;
+use Cake\I18n\Date;
 
 class CustomersController extends AppController
 {
-    public $paginate = [
-        'limit' => 25,
-        'order' => [
-            'Customer.firstname' => 'asc'
-        ]
-    ];
-
     /**
      * @throws \Exception
      */
     public function initialize()
     {
         parent::initialize();
+        $this->loadComponent('Flash');
         $this->loadComponent('Paginator');
     }
 
     public function index()
     {
         //???(new CustomersService())->getCustomers())]
-        $this->loadComponent('Paginator');
         $customers = $this->Paginator->paginate($this->Customers->find());
         $this->set(compact('customers'));
     }
@@ -41,7 +35,9 @@ class CustomersController extends AppController
     {
         $customer = $this->Customers->newEntity();
         if ($this->request->is('post')) {
-            $customer = $this->Customers->patchEntity($customer, $this->request->getData());
+            $data = $this->request->getData();
+            $data['joined_date'] = new Date('now');
+            $customer = $this->Customers->patchEntity($customer, $data);
 
             if ($this->Customers->save($customer)) {
                 $this->Flash->success(__('New customer has been saved.'));
