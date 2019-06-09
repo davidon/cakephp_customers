@@ -8,6 +8,12 @@ use Cake\Validation\Validator;
 
 class CustomersTable extends Table
 {
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+        $this->setPrimaryKey('id');
+    }
+
     /**
      * Default validation rules.
      *
@@ -18,10 +24,14 @@ class CustomersTable extends Table
     {
         $validator
             ->requirePresence('firstname', 'create')
-            ->allowEmptyString('firstname', false);
+            ->allowEmptyString('firstname', false)
+            ->minLength('firstname', 2)
+            ->maxLength('firstname', 20);
         $validator
             ->requirePresence('surname', 'create')
-            ->allowEmptyString('surname', false);
+            ->allowEmptyString('surname', false)
+            ->minLength('surname', 2)
+            ->maxLength('surname', 20);
         $validator
             ->requirePresence('email', 'create')
             ->email('email');
