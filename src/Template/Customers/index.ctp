@@ -3,9 +3,9 @@
     <?= $this->Html->link('Add Article', ['action' => 'add']) ?>
     <table>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Joined Date</th>
+            <th scope="col"><?= $this->Paginator->sort('firstname', 'Full name') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('email') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('joined_date') ?></th>
         </tr>
 
         <?php
