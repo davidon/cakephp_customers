@@ -1,3 +1,6 @@
+# Introduction:
+This is a sample CakePHP application for customers CRUD - List all customers with pagination and sort; Add new customer; Display customer's details (by clicking customer's name on list); Edit customer (from customer's detail page); Delete customer (from customer's detail page). Customers list on index page is sortable by clicking table headers.
+
 Note: The following commands are Windows' style.
 * Import database
 ```bash
