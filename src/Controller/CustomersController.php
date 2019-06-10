@@ -3,34 +3,49 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Service\Customers as CustomersService;
 use Cake\I18n\Date;
 
+/**
+ * Class CustomersController
+ */
 class CustomersController extends AppController
 {
     /**
+     * initialize
+     *
      * @throws \Exception
      */
     public function initialize()
     {
         parent::initialize();
-        $this->loadComponent('Flash');
         $this->loadComponent('Paginator');
     }
 
+    /**
+     * home page action
+     */
     public function index()
     {
-        //???(new CustomersService())->getCustomers())]
         $customers = $this->Paginator->paginate($this->Customers->find());
         $this->set(compact('customers'));
     }
 
-    public function view($email = null)
+    /**
+     * display a customer's details
+     *
+     * @param string|null $email
+     */
+    public function view(string $email = null)
     {
         $customer = $this->Customers->findByEmail($email)->firstOrFail();
         $this->set(compact('customer'));
     }
 
+    /**
+     * add a new customer
+     *
+     * @return \Cake\Http\Response|null
+     */
     public function add()
     {
         $customer = $this->Customers->newEntity();
@@ -48,7 +63,14 @@ class CustomersController extends AppController
         $this->set('customer', $customer);
     }
 
-    public function edit($email)
+    /**
+     * edit customer
+     *
+     * @param string $email
+     *
+     * @return \Cake\Http\Response|null
+     */
+    public function edit(string $email)
     {
         $customer = $this->Customers->findByEmail($email)->firstOrFail();
         if ($this->request->is(['post', 'put'])) {
@@ -62,8 +84,15 @@ class CustomersController extends AppController
 
         $this->set('customer', $customer);
     }
-    
-    public function delete($email)
+
+    /**
+     * Delete customer
+     *
+     * @param string $email
+     *
+     * @return \Cake\Http\Response|null
+     */
+    public function delete(string $email)
     {
         $this->request->allowMethod(['post', 'delete']);
 

@@ -6,8 +6,16 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+/**
+ * Class CustomersTable
+ */
 class CustomersTable extends Table
 {
+    /**
+     * initialize
+     *
+     * @param array $config
+     */
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -18,6 +26,7 @@ class CustomersTable extends Table
      * Default validation rules.
      *
      * @param Validator $validator Validator instance.
+     *
      * @return Validator
      */
     public function validationDefault(Validator $validator)
@@ -46,6 +55,7 @@ class CustomersTable extends Table
 
     /**
      * Wrapper for all validation rules for register
+     *
      * @param Validator $validator Cake validator object.
      *
      * @return Validator

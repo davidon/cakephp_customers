@@ -1,7 +1,5 @@
 # CakePHP specific files #
 ##########################
-/config/app.php
-/config/.env
 /logs/*
 /tmp/*
 /vendor/*
@@ -38,3 +36,4 @@ nbproject/*
 .vscode
 # Sass preprocessor
 .sass-cache/
+.github/*
